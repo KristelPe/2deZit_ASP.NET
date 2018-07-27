@@ -14,4 +14,18 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Companies\Create.cshtml" />
+    <Content Remove="Views\Companies\Delete.cshtml" />
+    <Content Remove="Views\Companies\Details.cshtml" />
+    <Content Remove="Views\Companies\Edit.cshtml" />
+    <Content Remove="Views\Companies\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Companies\Create.cshtml" />
+    <None Include="Views\Companies\Delete.cshtml" />
+    <None Include="Views\Companies\Details.cshtml" />
+    <None Include="Views\Companies\Edit.cshtml" />
+    <None Include="Views\Companies\Index.cshtml" />
+  </ItemGroup>
 </Project>
