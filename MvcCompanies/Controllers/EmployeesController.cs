@@ -19,10 +19,28 @@ namespace MvcCompanies.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var mvcCompanyContext = _context.Employee.Include(e => e.Department);
-            return View(await mvcCompanyContext.ToListAsync());
+            /*
+             * var mvcCompanyContext = _context.Employee.Include(e => e.Department);
+             * return View(await mvcCompanyContext.ToListAsync());
+             */
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var mvcCompanyContext = _context.Employee
+                                            .Where(x => x.DepartmentID == id)
+                                            .Include(e => e.Department);
+            var employees = await mvcCompanyContext.ToListAsync();
+            if (employees == null)
+            {
+                return NotFound();
+            }
+
+            return View(employees);
         }
 
         // GET: Employees/Details/5

@@ -19,10 +19,28 @@ namespace MvcCompanies.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var mvcCompanyContext = _context.Department.Include(d => d.Company);
-            return View(await mvcCompanyContext.ToListAsync());
+            /*
+             * var mvcCompanyContext =  _context.Department.Include(d => d.Company);
+             * return View(await mvcCompanyContext.ToListAsync());
+             */
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var mvcCompanyContext =  _context.Department
+                                             .Where(x => x.CompanyID == id)
+                                             .Include(d => d.Company);
+            var departments = await mvcCompanyContext.ToListAsync();
+            if (departments == null)
+            {
+                return NotFound();
+            }
+
+            return View(departments);
         }
 
         // GET: Departments/Details/5
@@ -41,7 +59,9 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
-            return View(department);
+            //return View(department);
+
+            return RedirectToAction("Index", "Employees", new { id = id });
         }
 
         // GET: Departments/Create

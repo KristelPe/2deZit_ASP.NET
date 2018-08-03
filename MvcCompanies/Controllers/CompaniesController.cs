@@ -39,7 +39,9 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
-            return View(company);
+            //return View(company);
+
+            return RedirectToAction("Index", "Departments", new { id = id });
         }
 
         // GET: Companies/Create

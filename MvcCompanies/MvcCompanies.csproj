@@ -20,6 +20,17 @@
     <Content Remove="Views\Companies\Details.cshtml" />
     <Content Remove="Views\Companies\Edit.cshtml" />
     <Content Remove="Views\Companies\Index.cshtml" />
+    <Content Remove="Views\Departments\Create.cshtml" />
+    <Content Remove="Views\Departments\Delete.cshtml" />
+    <Content Remove="Views\Departments\Details.cshtml" />
+    <Content Remove="Views\Departments\Edit.cshtml" />
+    <Content Remove="Views\Departments\Index.cshtml" />
+    <Content Remove="Views\Employees\Create.cshtml" />
+    <Content Remove="Views\Employees\Delete.cshtml" />
+    <Content Remove="Views\Employees\Details.cshtml" />
+    <Content Remove="Views\Employees\Edit.cshtml" />
+    <Content Remove="Views\Employees\Index.cshtml" />
+    <Content Remove="Views\Companies\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Companies\Create.cshtml" />
@@ -27,5 +38,15 @@
     <None Include="Views\Companies\Details.cshtml" />
     <None Include="Views\Companies\Edit.cshtml" />
     <None Include="Views\Companies\Index.cshtml" />
+    <None Include="Views\Departments\Create.cshtml" />
+    <None Include="Views\Departments\Delete.cshtml" />
+    <None Include="Views\Departments\Details.cshtml" />
+    <None Include="Views\Departments\Edit.cshtml" />
+    <None Include="Views\Departments\Index.cshtml" />
+    <None Include="Views\Employees\Create.cshtml" />
+    <None Include="Views\Employees\Delete.cshtml" />
+    <None Include="Views\Employees\Details.cshtml" />
+    <None Include="Views\Employees\Edit.cshtml" />
+    <None Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
 </Project>
