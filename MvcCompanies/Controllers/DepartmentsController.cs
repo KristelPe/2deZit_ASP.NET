@@ -40,6 +40,7 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
+            ViewData["CompanyID"] = id;
             return View(departments);
         }
 
@@ -61,13 +62,14 @@ namespace MvcCompanies.Controllers
 
             //return View(department);
 
-            return RedirectToAction("Index", "Employees", new { id = id });
+            return Redirect("/Employees?=" + id);
         }
 
         // GET: Departments/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID");
+            //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID");
+            ViewData["CompanyID"] = id;
             return View();
         }
 
@@ -84,8 +86,9 @@ namespace MvcCompanies.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
-            return View(department);
+            //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
+            //return View(department);
+            return Redirect("/Departments?=" + department.CompanyID);
         }
 
         // GET: Departments/Edit/5

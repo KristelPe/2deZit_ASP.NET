@@ -40,6 +40,7 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
+            ViewData["DepartmentID"] = id;
             return View(employees);
         }
 
@@ -63,9 +64,10 @@ namespace MvcCompanies.Controllers
         }
 
         // GET: Employees/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+            //ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID");
+            ViewData["DepartmentID"] = id;
             return View();
         }
 
@@ -82,8 +84,9 @@ namespace MvcCompanies.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", employee.DepartmentID);
-            return View(employee);
+            //ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", employee.DepartmentID);
+            //return View(employee);
+            return Redirect("/Employees?=" + employee.DepartmentID);
         }
 
         // GET: Employees/Edit/5
