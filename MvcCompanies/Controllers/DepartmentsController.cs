@@ -84,7 +84,7 @@ namespace MvcCompanies.Controllers
             {
                 _context.Add(department);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
             //return View(department);
