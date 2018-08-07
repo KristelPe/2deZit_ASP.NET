@@ -21,13 +21,13 @@
             @Html.DisplayNameFor(model => model.Company)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Company.CompanyID)
+            @Html.DisplayFor(model => model.Company.Name)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="DepartmentID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" asp-route-id='@ViewData["CompanyID"]'>Back to List</a>
     </form>
 </div>

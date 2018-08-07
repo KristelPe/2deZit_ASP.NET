@@ -31,6 +31,10 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
+            var com = _context.Company
+                              .Where(d => d.CompanyID == id);
+            var company = await com.ToListAsync();
+
             var mvcCompanyContext =  _context.Department
                                              .Where(x => x.CompanyID == id)
                                              .Include(d => d.Company);
@@ -41,6 +45,7 @@ namespace MvcCompanies.Controllers
             }
 
             ViewData["CompanyID"] = id;
+            ViewData["CompanyName"] = company.First().Name;
             return View(departments);
         }
 
@@ -104,7 +109,8 @@ namespace MvcCompanies.Controllers
             {
                 return NotFound();
             }
-            ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
+            //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
+            ViewData["CompanyID"] = department.CompanyID;
             return View(department);
         }
 
@@ -138,10 +144,11 @@ namespace MvcCompanies.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
-            ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
-            return View(department);
+            //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
+            //return View(department);
+            return Redirect("/Departments?=" + department.CompanyID);
         }
 
         // GET: Departments/Delete/5
@@ -159,7 +166,7 @@ namespace MvcCompanies.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["CompanyID"] = department.CompanyID;
             return View(department);
         }
 
@@ -171,7 +178,8 @@ namespace MvcCompanies.Controllers
             var department = await _context.Department.SingleOrDefaultAsync(m => m.DepartmentID == id);
             _context.Department.Remove(department);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return Redirect("/Departments?=" + department.CompanyID);
         }
 
         private bool DepartmentExists(int id)

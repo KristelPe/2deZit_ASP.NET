@@ -31,6 +31,10 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
+            var dep = _context.Department
+                              .Where(d => d.DepartmentID == id);
+            var department = await dep.ToListAsync();
+
             var mvcCompanyContext = _context.Employee
                                             .Where(x => x.DepartmentID == id)
                                             .Include(e => e.Department);
@@ -41,6 +45,8 @@ namespace MvcCompanies.Controllers
             }
 
             ViewData["DepartmentID"] = id;
+            ViewData["DepartmentName"] = department.First().Name;
+            ViewData["CompanyID"] = department.First().CompanyID;
             return View(employees);
         }
 
@@ -102,7 +108,15 @@ namespace MvcCompanies.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", employee.DepartmentID);
+
+            var depID = _context.Department
+                              .Where(d => d.DepartmentID == employee.DepartmentID);
+            var depComp = _context.Department
+                                  .Where(d => d.CompanyID == depID.First().CompanyID);
+            var departments = await depComp.ToListAsync();
+
+            ViewData["Department"] = new SelectList(departments, "DepartmentID", "Name", employee.Department);
+            ViewData["DepartmentID"] = employee.DepartmentID;
             return View(employee);
         }
 
@@ -136,10 +150,11 @@ namespace MvcCompanies.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", employee.DepartmentID);
-            return View(employee);
+
+            ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "Name", employee.Department);
+            return Redirect("/Employees?=" + employee.DepartmentID);
         }
 
         // GET: Employees/Delete/5
@@ -157,7 +172,7 @@ namespace MvcCompanies.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["DepartmentID"] = employee.DepartmentID;
             return View(employee);
         }
 
@@ -169,7 +184,8 @@ namespace MvcCompanies.Controllers
             var employee = await _context.Employee.SingleOrDefaultAsync(m => m.EmployeeID == id);
             _context.Employee.Remove(employee);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return Redirect("/Employees?=" + employee.DepartmentID);
         }
 
         private bool EmployeeExists(int id)
