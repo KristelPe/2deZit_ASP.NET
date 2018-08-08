@@ -131,6 +131,22 @@ namespace MvcCompanies.Controllers
                 return NotFound();
             }
 
+            var departments = await _context.Department
+                                            .Where(x => x.CompanyID == id)
+                                            .ToArrayAsync();
+            var depCount = departments.Length;
+
+            var empCount = 0;
+            foreach(var dep in departments){
+                var employees = await _context.Employee
+                                              .Where(x => x.DepartmentID == dep.DepartmentID)
+                                              .ToArrayAsync();
+                empCount = empCount + employees.Length;
+            }
+
+
+            ViewData["DepCount"] = depCount;
+            ViewData["EmpCount"] = empCount;
             return View(company);
         }
 
@@ -141,6 +157,22 @@ namespace MvcCompanies.Controllers
         {
             var company = await _context.Company.SingleOrDefaultAsync(m => m.CompanyID == id);
             _context.Company.Remove(company);
+
+            var departments = await _context.Department
+                                            .Where(x => x.CompanyID == id)
+                                            .ToArrayAsync();
+            foreach (var dep in departments)
+            {
+                var employees = await _context.Employee
+                                              .Where(x => x.DepartmentID == dep.DepartmentID)
+                                              .ToArrayAsync();
+                foreach (var emp in employees)
+                {
+                    _context.Employee.Remove(emp);
+                }
+                _context.Department.Remove(dep);
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

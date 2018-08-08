@@ -166,7 +166,14 @@ namespace MvcCompanies.Controllers
             {
                 return NotFound();
             }
+
+            var employees = await _context.Employee
+                                         .Where(x => x.DepartmentID == id)
+                                         .ToArrayAsync();
+            var empCount = employees.Length;
+
             ViewData["CompanyID"] = department.CompanyID;
+            ViewData["EmpCount"] = empCount;
             return View(department);
         }
 
@@ -177,6 +184,14 @@ namespace MvcCompanies.Controllers
         {
             var department = await _context.Department.SingleOrDefaultAsync(m => m.DepartmentID == id);
             _context.Department.Remove(department);
+
+            var employees = await _context.Employee
+                                         .Where(x => x.DepartmentID == id)
+                                         .ToArrayAsync();
+            foreach(var emp in employees){
+                _context.Employee.Remove(emp);
+            }
+
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
             return Redirect("/Departments?=" + department.CompanyID);

@@ -23,6 +23,18 @@
         <dd>
             @Html.DisplayFor(model => model.Adres)
         </dd>
+        <dt>
+            Departments:
+        </dt>
+        <dd>
+            @ViewData["DepCount"]
+        </dd>
+        <dt>
+            Employees:
+        </dt>
+        <dd>
+            @ViewData["EmpCount"]
+        </dd>
     </dl>
     
     <form asp-action="Delete">
