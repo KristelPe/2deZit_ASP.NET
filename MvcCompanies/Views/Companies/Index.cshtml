@@ -2,41 +2,77 @@
 @{
     ViewData["Title"] = "Companies";
 }
+
+<style>
+    .actions{
+        display: inline-block;
+        margin-left: 1em;
+    }
+
+    li{
+       margin-top: 0.5em;
+       margin-bottom: 0.5em;
+    }
+
+    b{
+        font-size: 18px;
+        margin-bottom: 1em;
+    }
+
+    i{
+        font-size: 16px;
+    }
+
+    .btn-sm, .btn-xs{
+        font-size: 14px;
+    }
+</style>
+
 <div class="jumbotron">
     <h1>MvcCompanies</h1>
     <p>Companies</p>
 </div>
 <p>
-    <a asp-action="Create" class="btn btn-info" style="float:right">Create New</a>
+    <a asp-action="Create" class="btn btn-default" style="float:right">Create Company</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Adres)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Adres)
-    </td>
-    <td>
-        <a asp-action="Edit" asp-route-id="@item.CompanyID">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.CompanyID">Departments</a> |
-        <a asp-action="Delete" asp-route-id="@item.CompanyID">Delete</a>
-    </td>
-</tr>
-}
-    </tbody>
-</table>
+
+<ul style="margin-top: 7em">
+    @foreach(var company in Model)
+    {
+        <hr />
+        <li style="margin-bottom: 2em;">
+            <b>@Html.DisplayFor(modelItem => company.Name)</b>
+            <div class="actions">
+                <a asp-action="Edit" asp-route-id="@company.CompanyID" class="btn btn-default">Edit</a>
+                <a asp-controller="Departments" asp-action="Create" asp-route-id='@company.CompanyID' class="btn btn-default">Create Department</a>
+                <a asp-action="Delete" asp-route-id="@company.CompanyID" class="btn btn-default">Delete</a>
+            </div>
+            <ul>
+                @foreach(var department in company.Departments)
+                {
+                    <li style="margin-bottom: 1.5em;">
+                        <i>@Html.DisplayFor(modelItem => department.Name)</i>
+                        <div class="actions">
+                            <a asp-controller="Departments" asp-action="Edit" asp-route-id="@department.DepartmentID" class="btn btn-sm btn-default">Edit</a> |
+                            <a asp-controller="Employees" asp-action="Create" asp-route-id='@department.DepartmentID' class="btn btn-sm btn-default">Create Employee</a> |
+                            <a asp-controller="Departments" asp-action="Delete" asp-route-id="@department.DepartmentID" class="btn btn-sm btn-default">Delete</a>
+                        </div>
+                        <ul>
+                            @foreach(var employee in department.Employees)
+                            {
+                                <li>
+                                    @Html.DisplayFor(modelItem => employee.LastName)
+                                    @Html.DisplayFor(modelItem => employee.FirstName)
+                                    <div class="actions">
+                                        <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.EmployeeID" class="btn btn-xs btn-default">Edit</a> |
+                                        <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.EmployeeID" class="btn btn-xs btn-default">Delete</a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

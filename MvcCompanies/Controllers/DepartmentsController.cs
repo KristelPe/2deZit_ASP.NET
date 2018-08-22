@@ -93,7 +93,8 @@ namespace MvcCompanies.Controllers
             }
             //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
             //return View(department);
-            return Redirect("/Departments?=" + department.CompanyID);
+            //return Redirect("/Departments?=" + department.CompanyID);
+            return RedirectToAction("Index", "Companies");
         }
 
         // GET: Departments/Edit/5
@@ -148,7 +149,8 @@ namespace MvcCompanies.Controllers
             }
             //ViewData["CompanyID"] = new SelectList(_context.Company, "CompanyID", "CompanyID", department.CompanyID);
             //return View(department);
-            return Redirect("/Departments?=" + department.CompanyID);
+            //return Redirect("/Departments?=" + department.CompanyID);
+            return RedirectToAction("Index", "Companies");
         }
 
         // GET: Departments/Delete/5
@@ -194,7 +196,8 @@ namespace MvcCompanies.Controllers
 
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-            return Redirect("/Departments?=" + department.CompanyID);
+            //return Redirect("/Departments?=" + department.CompanyID);
+            return RedirectToAction("Index", "Companies");
         }
 
         private bool DepartmentExists(int id)

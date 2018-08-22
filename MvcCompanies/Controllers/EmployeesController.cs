@@ -92,7 +92,8 @@ namespace MvcCompanies.Controllers
             }
             //ViewData["DepartmentID"] = new SelectList(_context.Department, "DepartmentID", "DepartmentID", employee.DepartmentID);
             //return View(employee);
-            return Redirect("/Employees?=" + employee.DepartmentID);
+            //return Redirect("/Employees?=" + employee.DepartmentID);
+            return RedirectToAction("Index", "Companies");
         }
 
         // GET: Employees/Edit/5
@@ -154,7 +155,8 @@ namespace MvcCompanies.Controllers
             }
 
             ViewData["Department"] = new SelectList(_context.Department, "DepartmentID", "Name", employee.Department);
-            return Redirect("/Employees?=" + employee.DepartmentID);
+            //return Redirect("/Employees?=" + employee.DepartmentID);
+            return RedirectToAction("Index", "Companies");
         }
 
         // GET: Employees/Delete/5
@@ -185,12 +187,14 @@ namespace MvcCompanies.Controllers
             _context.Employee.Remove(employee);
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-            return Redirect("/Employees?=" + employee.DepartmentID);
+            //return Redirect("/Employees?=" + employee.DepartmentID);
+            return RedirectToAction("Index", "Companies");
         }
 
         private bool EmployeeExists(int id)
         {
             return _context.Employee.Any(e => e.EmployeeID == id);
         }
+
     }
 }

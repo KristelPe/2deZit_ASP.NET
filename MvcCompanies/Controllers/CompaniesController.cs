@@ -21,7 +21,12 @@ namespace MvcCompanies.Controllers
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Company.ToListAsync());
+            var mvcCompanyContext = _context.Company
+                                            .Include(d => d.Departments)
+                                            .ThenInclude(e => e.Employees);
+            var companies = await mvcCompanyContext.ToListAsync();
+
+            return View(companies);
         }
 
         // GET: Companies/Details/5

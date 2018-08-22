@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MvcCompanies.Models
 {
-    public enum EGender {
-        m, f,
+    public enum EOccupation {
+        Chief, Animator, Singer, Developer, Actor, Producer, Lawyer, Director, Model, Rapper, Author, Composer, Engineer, 
     }
 
     public class Employee
@@ -12,10 +12,10 @@ namespace MvcCompanies.Models
         public int EmployeeID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public EGender Gender { get; set; }
+        public bool Gender { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = false)]
         public DateTime Birthdate { get; set; }
-        public string Occupation { get; set; }
+        public EOccupation? Occupation { get; set; }
         public int DepartmentID { get; set; }
 
         public virtual Department Department { get; set; }

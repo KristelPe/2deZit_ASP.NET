@@ -119,9 +119,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 11,
                         LastName = "Lasseter",
                         FirstName = "John",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1957-1-12"),
-                        Occupation = "Film chief"
+                        Occupation = EOccupation.Chief
                     },
 
                     new Employee
@@ -129,9 +129,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 11,
                         LastName = "Wise",
                         FirstName = "Kirk",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1963-8-24"),
-                        Occupation = "Animator"
+                        Occupation = EOccupation.Animator
                     },
 
                     new Employee
@@ -139,9 +139,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 11,
                         LastName = "Trousdale",
                         FirstName = "Gary",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1960-6-8"),
-                        Occupation = "Director"
+                        Occupation = EOccupation.Director
                     },
 
                     new Employee
@@ -149,9 +149,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 21,
                         LastName = "Choi",
                         FirstName = "Jin-Ri (Sulli)",
-                        Gender = EGender.f,
+                        Gender = false,
                         Birthdate = DateTime.Parse("1994-3-29"),
-                        Occupation = "Actress - model"
+                        Occupation = EOccupation.Model
                     },
 
                     new Employee
@@ -159,9 +159,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 21,
                         LastName = "Liu",
                         FirstName = "Amber Joshphine",
-                        Gender = EGender.f,
+                        Gender = false,
                         Birthdate = DateTime.Parse("1992-9-18"),
-                        Occupation = "Rapper - songwriter - composer"
+                        Occupation = EOccupation.Rapper
                     },
 
                     new Employee
@@ -169,9 +169,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 21,
                         LastName = "Kim",
                         FirstName = "Tae-yeon",
-                        Gender = EGender.f,
+                        Gender = false,
                         Birthdate = DateTime.Parse("1989-3-9"),
-                        Occupation = "Singer"
+                        Occupation = EOccupation.Singer
                     },
 
                     new Employee
@@ -179,9 +179,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 21,
                         LastName = "Kim",
                         FirstName = "Ryeo-wook",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1987-6-21"),
-                        Occupation = "Singer - songwriter - actor"
+                        Occupation = EOccupation.Actor
                     },
 
                     new Employee
@@ -189,9 +189,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 22,
                         LastName = "Liu",
                         FirstName = "June",
-                        Gender = EGender.f,
+                        Gender = false,
                         Birthdate = DateTime.Parse("1990-2-27"),
-                        Occupation = "Lawyer"
+                        Occupation = EOccupation.Lawyer
                     },
 
                     new Employee
@@ -199,9 +199,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 22,
                         LastName = "Wu",
                         FirstName = "Carter",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1986-7-12"),
-                        Occupation = "Lawyer"
+                        Occupation = EOccupation.Lawyer
                     },
 
                     new Employee
@@ -209,9 +209,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 31,
                         LastName = "Miyazaki",
                         FirstName = "Hayao",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1941-5-1"),
-                        Occupation = "Manga artist - author - animator"
+                        Occupation = EOccupation.Author
                     },
 
                     new Employee
@@ -219,9 +219,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 31,
                         LastName = "Takahata",
                         FirstName = "Isao",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1935-10-29"),
-                        Occupation = "Director"
+                        Occupation = EOccupation.Director
                     },
 
                     new Employee
@@ -229,9 +229,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 31,
                         LastName = "Hisaishi",
                         FirstName = "Joe",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1950-6-12"),
-                        Occupation = "Composer - conductor - arranger"
+                        Occupation = EOccupation.Composer
                     },
 
                     new Employee
@@ -239,9 +239,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 52,
                         LastName = "Elric",
                         FirstName = "Edward",
-                        Gender= EGender.m,
+                        Gender= true,
                         Birthdate = DateTime.Parse("1983-4-30"),
-                        Occupation = "Enigeer"
+                        Occupation = EOccupation.Engineer
                      },
 
                     new Employee
@@ -249,9 +249,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 52,
                         LastName = "Villetta",
                         FirstName = "Lloyd",
-                        Gender = EGender.m,
+                        Gender = true,
                         Birthdate = DateTime.Parse("1979-2-12"),
-                        Occupation = "Technician"
+                        Occupation = EOccupation.Developer
                     },
 
                     new Employee
@@ -259,9 +259,9 @@ namespace MvcCompanies.Models
                         DepartmentID = 52,
                         LastName = "Evergarden",
                         FirstName = "Violet",
-                        Gender = EGender.f,
+                        Gender = false,
                         Birthdate = DateTime.Parse("1993-6-11"),
-                        Occupation = "Developer"
+                        Occupation = EOccupation.Developer
                     }
                 );
 
